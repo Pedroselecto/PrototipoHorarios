@@ -11,7 +11,8 @@ enum StatusHorario {
     case disponivel, selecionado, reservado
 }
 
-struct ContentView: View {
+// ALTERADO: ContentView -> TelaUsuario
+struct TelaUsuario: View {
     // Cores
     let verdeEscuro = Color(red: 22/255, green: 73/255, blue: 43/255)
     let verdeClaro = Color(red: 104/255, green: 139/255, blue: 115/255)
@@ -47,7 +48,6 @@ struct ContentView: View {
             VStack(spacing: 0) {
                 
                 // --- CABEÇALHO CUSTOMIZADO ---
-                // Adicionamos um padding extra no topo para descer o título e não bater no relógio
                 VStack(spacing: 0) {
                     HStack {
                         Image(systemName: "chevron.left")
@@ -67,7 +67,7 @@ struct ContentView: View {
                             .foregroundColor(verdeEscuro)
                     }
                     .padding(.horizontal)
-                    .padding(.top, 50) // Espaço para não bater no Notch/Relógio
+                    .padding(.top, 50)
                     .padding(.bottom, 15)
                     
                     Divider()
@@ -147,9 +147,9 @@ struct ContentView: View {
                 }
                 .background(Color.white)
             }
-            .navigationBarTitle("") // Título vazio ajuda a esconder a barra
-            .navigationBarHidden(true) // Esconde a barra do sistema
-            .edgesIgnoringSafeArea(.top) // Faz o fundo branco subir até o topo
+            .navigationBarTitle("")
+            .navigationBarHidden(true)
+            .edgesIgnoringSafeArea(.top)
         }
     }
     
@@ -159,7 +159,7 @@ struct ContentView: View {
     }
 }
 
-// --- COMPONENTES AUXILIARES (Devem estar fora da ContentView) ---
+// --- COMPONENTES AUXILIARES ---
 
 struct BotaoHorario: View {
     @Binding var horario: HorarioQuadra
@@ -212,3 +212,10 @@ private let itemFormatter: DateFormatter = {
     formatter.locale = Locale(identifier: "pt_BR")
     return formatter
 }()
+
+// Adicionado para o Canvas funcionar com o novo nome
+struct TelaUsuario_Previews: PreviewProvider {
+    static var previews: some View {
+        TelaUsuario()
+    }
+}
